@@ -1,0 +1,12 @@
+<h1>HOLA MUNDO!</h1>
+
+{{#each users}}
+  <h3>{{this.name}} {{this.lastName}}</h3>
+
+  <ul>
+    <li>ID: {{this.id}}</li>
+    <li>Email: {{this.email}}</li>
+    <li>Edad: {{this.age}}</li>
+    <li>Direccion: {{this.address}}</li>
+  </ul>
+{{/each}}
