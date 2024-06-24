@@ -9,7 +9,7 @@ const isAdmin = async (userId) => {
     return user.isAdmin;
   } catch (error) {
     console.error('Error al verificar si el usuario es administrador:', error);
-    return false; // En caso de error, asumimos que no es administrador
+    return false; 
   }
 };
 
