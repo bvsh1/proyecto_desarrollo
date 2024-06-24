@@ -1,20 +1,38 @@
 import jwt from "jsonwebtoken";
+import User from "../models/user.js";
 
-const jwtAuthenticated = (req, resp, next) => {
-  const jwtCookie = req.cookies["jwt"];
+const jwtAuthenticated = async (req, resp, next) => {
+  const token = req.cookies.jwt;
 
-  if (!jwtCookie) {
-    resp.redirect("/user/login");
-    return;
+  if (!token) {
+    return resp.status(401).json({
+      success: false,
+      message: "Unauthorized: No token provided",
+    });
   }
 
   try {
-    jwt.verify(jwtCookie, process.env.JWT_SIGNATURE);
+    const decoded = jwt.verify(token, process.env.JWT_SIGNATURE);
+    req.user = await User.findById(decoded.id);
+
+    if (!req.user) {
+      return resp.status(401).json({
+        success: false,
+        message: "Unauthorized: User not found",
+      });
+    }
+
     next();
   } catch (error) {
-    console.error("error", error);
-    resp.redirect("/user/login");
+    console.error("JWT verification error:", error);
+    return resp.status(401).json({
+      success: false,
+      message: "Unauthorized: Invalid token",
+    });
   }
 };
 
 export default jwtAuthenticated;
+
+
+

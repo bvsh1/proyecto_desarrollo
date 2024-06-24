@@ -1,53 +1,42 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 offset-md-4">
-      <div class="bg-light mt-4 p-4">
-        <form action="/user/login" method="post" class="row g-3">
-          <h4>Crear Usuario</h4>
-
-          {{! Email }}
-          <div class="col-12">
-            <label>Email</label>
-            <input
-              type="text"
-              name="email"
-              class="form-control"
-              placeholder="Ingresa tu email"
-            />
-          </div>
-
-          {{! Password }}
-          <div class="col-12">
-            <label>Contraseña</label>
-            <input
-              type="password"
-              name="password"
-              class="form-control"
-              placeholder="Ingresa tu contraseña"
-            />
-          </div>
-
-          <div class="col-12">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="rememberMe" />
-              <label class="form-check-label" for="rememberMe">
-                Remember me</label>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+  </head>
+  <body style="background-color:darkgray">
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+              <div class="card-body p-5 text-center">
+    
+                <div class="mb-md-5 mt-md-4 pb-5">
+    
+                  <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                  <div data-mdb-input-init class="form-outline form-white mb-4">
+                    <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                    <label class="form-label" for="typeEmailX">Email</label>
+                  </div>
+    
+                  <div data-mdb-input-init class="form-outline form-white mb-4">
+                    <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                    <label class="form-label" for="typePasswordX">Contraseña</label>
+                  </div>
+     
+                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" onclick="location.href='main.html'">Login</button>
+                </div>
+    
+                <div>
+                  <p class="mb-0">¿No tienes cuenta? <a href="./registrer.hbs" class="text-white-50 fw-bold">Registrate</a>
+                  </p>
+                </div>
+    
+              </div>
             </div>
           </div>
-          <div class="col-12">
-            <button type="submit" class="btn btn-dark float-end">
-              Iniciar sesión
-            </button>
-          </div>
-        </form>
-        <hr class="mt-4" />
-        <div class="col-12">
-          <p class="text-center mb-0">
-            No tienes cuenta?
-            <a href="/user/register">Crear cuenta</a>
-          </p>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+    </section>
+  </body>

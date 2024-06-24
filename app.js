@@ -1,11 +1,20 @@
-import express from "express";
-import cookieParser from "cookie-parser";
-import * as handlebars from "express-handlebars";
-import mongoose from "mongoose";
+import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import * as dotenv from "dotenv";
+import * as dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
+import * as handlebars from "express-handlebars";
+import bcrypt from 'bcrypt';
+import bodyParser from 'body-parser';
+
+import billRouter from './routes/bill.js';
+import buyRouter from './routes/buy.js';
+import userRouter from './routes/user.js';
+import mainRouter from './routes/main.js';
+import walletRoutes from './routes/wallet.js';
+import productRoutes from './routes/products.js'
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -25,9 +34,14 @@ app.engine(
 );
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(walletRoutes); 
+app.use(productRoutes);
+app.use(buyRouter);
+app.use(billRouter);
 
 mongoose
   .connect(process.env.URL_MONGO)
@@ -35,7 +49,12 @@ mongoose
     console.log("Connected to Mongo Database");
   })
   .catch((error) => {
-    console.error(`Connection refuse: ${error}`);
+    console.error(`Connection refused: ${error}`);
   });
+
+app.use('/bill', billRouter);
+app.use('/buy', buyRouter);
+app.use('/user', userRouter);
+app.use('', mainRouter);
 
 export { app };
