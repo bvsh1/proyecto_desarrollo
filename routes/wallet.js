@@ -8,9 +8,8 @@ const router = express.Router();
 // Ruta para ver el balance del wallet (listo)
 router.get('/wallet', jwtAuthenticated, async (req, res) => {
     try {
-        const userId = req.user.id; // Obtener el ID del usuario desde req.user
+        const userId = req.user.id;
     
-        // Buscar el usuario en la base de datos usando el ID del token JWT
         const user = await User.findById(userId);
     
         if (!user) {
@@ -35,9 +34,7 @@ router.put('/wallet/charge', jwtAuthenticated, async (req, res) => {
     }
   
     try {
-      const userId = req.user.id; // Obtener el ID del usuario desde req.user
-  
-      // Buscar el usuario en la base de datos usando el ID del token JWT
+      const userId = req.user.id;
       const user = await User.findById(userId);
   
       if (!user) {
